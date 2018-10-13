@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
  * @author Matej Poklemba
  */
 public class Converter {
-    static String prefixContentFileName = "Skript_prefix.txt";
-    static String serverLocationFileName = "Skript_server.txt";
-    static String endingContentFileName = "Skript_ending.txt";
+    static String prefixContentFileName = "prefix.txt";
+    static String serverLocationFileName = "server.txt";
+    static String endingContentFileName = "ending.txt";
 
     /**
      * @param args the command line arguments
