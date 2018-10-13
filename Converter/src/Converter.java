@@ -68,6 +68,7 @@ public class Converter {
         boolean reset = false;
         boolean keep = false;
         boolean iso = false;
+        boolean old_eval = false;
         int isoPercent = 0;
         String suffix = ".new";
 
@@ -83,6 +84,9 @@ public class Converter {
                 invalidArg = false;
             } else if (args[i].equals("-k") || args[i].equals("--keep")) {
                 keep = true;
+                invalidArg = false;
+            } else if (args[i].equals("-o") || args[i].equals("--old-eval")) {
+                old_eval = true;
                 invalidArg = false;
             } else if (args[i].matches("-s=.+") || args[i].matches("--suffix=.+")) {
                 suffix = args[i].substring(args[i].indexOf('=') + 1);
@@ -234,23 +238,26 @@ public class Converter {
                             }
                             while (s2 != null && s2.contains(":e=")) {
                                 StringBuilder stringBuilder = new StringBuilder(s2.trim());
-                                stringBuilder.replace(4, 5, "f");
+                                if ( !old_eval )
+                                    stringBuilder.replace(4, 5, "f");
                                 if (generalType.equals("DFA") || generalType.equals("NFA") || generalType.equals("EFA")) {
                                     if (stringBuilder.toString().charAt(13) == ':') {
                                         if (iso) {
                                             StringBuilder stringBuilder2 = new StringBuilder(stringBuilder.toString());
-                                            stringBuilder.insert(13, "-Y");
-                                            if (isoPercent > 0) {
-                                                stringBuilder.append(" " + (100 - isoPercent) + "%");
-                                                stringBuilder2.insert(13, "-N");
-                                                stringBuilder2.append(" " + isoPercent + "%");
-                                                stringBuilder.append("\n" + stringBuilder2);
+                                            if ( !old_eval ) {
+                                                stringBuilder.insert(13, "-Y");
+                                                if (isoPercent > 0) {
+                                                    stringBuilder.append(" " + (100 - isoPercent) + "%");
+                                                    stringBuilder2.insert(13, "-N");
+                                                    stringBuilder2.append(" " + isoPercent + "%");
+                                                    stringBuilder.append("\n" + stringBuilder2);
+                                                }
                                             }
-                                        } else {
+                                        } else if ( !old_eval ) {
                                             stringBuilder.insert(13, "-N");
                                         }
                                     }
-                                    if (stringBuilder.indexOf("F=") != -1) {
+                                    if (stringBuilder.indexOf("F=") != -1 && !old_eval) {
                                         stringBuilder.replace(stringBuilder.indexOf("F="), stringBuilder.indexOf("F=") + 2, "final=");
                                     }
                                 }
@@ -294,6 +301,7 @@ public class Converter {
         System.out.format("\t-s=<suf> | --suffix=<suf>\tAdd a suffix to the new files, defaults to .new\n");
         System.out.format("\t-r | --reset\tPerform reset on files (use if they contain older version of the editor)\n");
         System.out.format("\t-k | --keep\tKeep reset versions of files (...Reset.qdef)\n");
+        System.out.format("\t-o | --old-eval\tUse the old IS evaluator (type 'b', not type 'f')\n");
         System.out.format("\t-i=<percent> | --isomorphism=<percent>\tAdd isomorphism condition to the questions with <percent> partial points for nonisomorphic answer\n");
     }
 
