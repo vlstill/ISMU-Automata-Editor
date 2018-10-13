@@ -125,4 +125,56 @@
       <poradi>0</poradi>
     </objekt>
   </uzel>
+  <uzel>
+    <zkratka_pro_url>jquery-min-js</zkratka_pro_url>
+    <pravo>
+      <typ_prava>r</typ_prava>
+      <typ_subjektu>w</typ_subjektu>
+    </pravo>
+    <objekt>
+      <mime_type>application/javascript</mime_type>
+      <kodovani>u</kodovani>
+      <jmeno_souboru>jquery.min.js</jmeno_souboru>
+      <poradi>0</poradi>
+    </objekt>
+  </uzel>
+  <uzel>
+    <zkratka_pro_url>jquery-ui-js</zkratka_pro_url>
+    <pravo>
+      <typ_prava>r</typ_prava>
+      <typ_subjektu>w</typ_subjektu>
+    </pravo>
+    <objekt>
+      <mime_type>application/javascript</mime_type>
+      <kodovani>u</kodovani>
+      <jmeno_souboru>jquery-ui.js</jmeno_souboru>
+      <poradi>0</poradi>
+    </objekt>
+  </uzel>
+  <uzel>
+    <zkratka_pro_url>jquery-ui-css</zkratka_pro_url>
+    <pravo>
+      <typ_prava>r</typ_prava>
+      <typ_subjektu>w</typ_subjektu>
+    </pravo>
+    <objekt>
+      <mime_type>text/css</mime_type>
+      <kodovani>u</kodovani>
+      <jmeno_souboru>jquery-ui.css</jmeno_souboru>
+      <poradi>0</poradi>
+    </objekt>
+  </uzel>
+  <uzel>
+    <zkratka_pro_url>bootstrap-min-js</zkratka_pro_url>
+    <pravo>
+      <typ_prava>r</typ_prava>
+      <typ_subjektu>w</typ_subjektu>
+    </pravo>
+    <objekt>
+      <mime_type>application/javascript</mime_type>
+      <kodovani>u</kodovani>
+      <jmeno_souboru>bootstrap.min.js</jmeno_souboru>
+      <poradi>0</poradi>
+    </objekt>
+  </uzel>
 </slozka>
