@@ -28,3 +28,5 @@ Editor/.idea/
 is-upload.zip
 is-upload/*.js
 is-upload/*.css
+
+_build
