@@ -104,7 +104,7 @@ function init(id, type) {
 
 		var buttonInitState = document.createElement("input");
 		buttonInitState.type = "button";
-		buttonInitState.value = "Počátečný stav";
+		buttonInitState.value = "Počáteční stav";
 		
 		var buttonEndState = document.createElement("input");
 		buttonEndState.type = "button";
@@ -314,7 +314,7 @@ function initGraphTab(wp)
 function initTableTab(wp) {
 	var tableButtonInit = document.createElement("input");
 	tableButtonInit.type = "button";
-	tableButtonInit.value = "Počátečný stav";
+	tableButtonInit.value = "Počáteční stav";
 	tableButtonInit.tableTab = wp.tableTab;
 	tableButtonInit.setAttributeNS(null, "onclick", 'tableButtonInitClick(tableTab);');
 	tableButtonInit.style.borderStyle = "outset";
