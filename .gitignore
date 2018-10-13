@@ -24,3 +24,7 @@ Converter/.idea/workspace.xml
 Generator/target/
 Generator/.idea/workspace.xml
 Editor/.idea/
+
+is-upload.zip
+is-upload/*.js
+is-upload/*.css
