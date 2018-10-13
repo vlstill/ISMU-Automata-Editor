@@ -1,21 +1,7 @@
-Skript_Cpp/Skript.sdf
-Skript_Cpp/Skript/Debug/
-Skript_Cpp/ipch/
-Skript_Cpp/Skript.VC.opendb
-Skript_Cpp/Skript/ReadMe.txt
-/Skript_Java/nbproject/private/
-/Skript_Java/build/
-/Skript_Java/dist/
-Skript_Cpp/Debug/Skript.exe
-Skript_Cpp/Skript.VC.db
-Skript_Cpp/Skript.VC.VC.opendb
-Skript_Cpp/.vs/Skript/v14/.suo
-Skript_Cpp/Debug/Skript.pdb
-Skript_Cpp/Debug/Skript.ilk
-Skript_Java/.idea/workspace.xml
-Skript_Java/.idea/modules.xml
-Skript_Java/.idea/misc.xml
-Skript_Java/.idea/Skript_Java.iml
+Converter/.idea/workspace.xml
+Converter/.idea/modules.xml
+Converter/.idea/misc.xml
+Converter/.idea/Converter.iml
 Resolver/fja/.idea/workspace.xml
 Resolver/production/
 Resolver/out/
@@ -30,3 +16,5 @@ is-upload/*.js
 is-upload/*.css
 
 _build
+
+*.new.qdef
