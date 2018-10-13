@@ -6,6 +6,7 @@
 
 import java.io.*;
 import java.util.*;
+import java.time.Year;
 import java.util.regex.Pattern;
 
 /**
@@ -32,6 +33,8 @@ public class Converter {
                 String line = reader.readLine();
                 serverLocation += line;
             }
+            int year = Year.now().getValue();
+            serverLocation = serverLocation.replaceAll("%YEAR%", String.valueOf(year));
         } catch (Exception e) {
             System.err.format("ERROR: Could not read server location from file '%s'. Converting aborted.\n", serverLocationFileName);
             return;
@@ -195,11 +198,7 @@ public class Converter {
                             String type = iterator.next();
                             if (!validParserFilename(type))
                                 continue;
-                            writer.write("<script src=\"" + serverLocation + "/js/" + type + "Parser.js\" type=\"text/javascript\"></script>\n");
-                            // Fallback if serverLocation importing fails
-                            writer.write("<script>if (typeof " + type + "Parser == 'undefined') {\n");
-                            writer.write("    document.write('<script src=\"//rawgit.com/matejos/ISMU-Automata-Tools/master/Resolver/fja/web/js/" + type + "Parser.js\">\\<\\/script>');\n");
-                            writer.write("}</script>\n");
+                            writer.write("<script src=\"" + serverLocation + "/" + type + "Parser.js\" type=\"text/javascript\"></script>\n");
                         }
                     }
 
