@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 mkdir -p _build
-if [[ ! -f _build/Converter.class ]] || [[ _build/Converter.class -ot src/Converter.java ]]; then
+if [ ! -f _build/Converter.class ] || [ _build/Converter.class -ot src/Converter.java ]; then
     printf "rebuilding... "
     javac -d _build src/Converter.java
     echo OK
