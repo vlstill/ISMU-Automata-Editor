@@ -37,7 +37,7 @@ public class Converter {
             serverLocation = serverLocation.replaceAll("%YEAR%", String.valueOf(year));
         } catch (Exception e) {
             System.err.format("ERROR: Could not read server location from file '%s'. Converting aborted.\n", serverLocationFileName);
-            return;
+            System.exit(2);
         }
 
         try {
@@ -49,7 +49,7 @@ public class Converter {
             }
         } catch (Exception e) {
             System.err.format("ERROR: Could not read prefix content from file '%s'. Converting aborted.\n", prefixContentFileName);
-            return;
+            System.exit(2);
         }
 
         try {
@@ -61,7 +61,7 @@ public class Converter {
             }
         } catch (Exception e) {
             System.err.format("ERROR: Could not read ending content from file '%s'. Converting aborted.\n", endingContentFileName);
-            return;
+            System.exit(2);
         }
 
         ArrayList<String> files = new ArrayList<>();
@@ -276,13 +276,15 @@ public class Converter {
                     errorCount++;
                 } else {
                     System.err.format("ERROR: Could not read content from file '%s'. Converting aborted.\n", inputName);
+                    errorCount++;
                     if (!reset)
                         System.err.format("Does this file contains older version of editor? In that case use argument -r\n");
-                    return;
                 }
             }
         }
         System.out.format("Program finished with %d errors.\n", errorCount);
+        if (errorCount > 0)
+            System.exit(1);
         return;
     }
 
