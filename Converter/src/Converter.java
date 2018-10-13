@@ -21,7 +21,7 @@ public class Converter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if (args.length < 1 || (args.length == 1 && args[0].equals("-?"))) {
+        if (args.length < 1 || (args.length == 1 && (args[0].equals("-?") || args[0].equals("-h")))) {
             printHelp();
             return;
         }
@@ -69,6 +69,8 @@ public class Converter {
         boolean keep = false;
         boolean iso = false;
         int isoPercent = 0;
+        String suffix = ".new";
+
 
         for (int i = 0; i < args.length; i++) {
             boolean invalidArg = true;
@@ -76,13 +78,16 @@ public class Converter {
             if (Pattern.matches("\\S+.qdef", args[i])) {
                 files.add(args[i]);
                 invalidArg = false;
-            } else if (args[i].equals("-r") || args[i].equals("-reset")) {
+            } else if (args[i].equals("-r") || args[i].equals("--reset")) {
                 reset = true;
                 invalidArg = false;
-            } else if (args[i].equals("-k") || args[i].equals("-keep")) {
+            } else if (args[i].equals("-k") || args[i].equals("--keep")) {
                 keep = true;
                 invalidArg = false;
-            } else if (args[i].matches("-i=\\d+") || args[i].matches("-isomorphism=\\d+")) {
+            } else if (args[i].matches("-s=.+") || args[i].matches("--suffix=.+")) {
+                suffix = args[i].substring(args[i].indexOf('=') + 1);
+                invalidArg = false;
+            } else if (args[i].matches("-i=\\d+") || args[i].matches("--isomorphism=\\d+")) {
                 isoPercent = Integer.parseInt(args[i].substring(args[i].indexOf('=') + 1));
                 if (isoPercent < 0 || isoPercent > 100) {
                     System.err.format("ERROR: Isomorphism partial points number not in <0,100>.\n");
@@ -98,11 +103,6 @@ public class Converter {
                 return;
             }
         }
-
-        String suffix;
-        System.out.print("Enter suffix of the export name: ");
-        Scanner scanner = new Scanner(System.in);
-        suffix = scanner.next();
 
         long t = System.currentTimeMillis() / 1000;
         int errorCount = 0;
@@ -289,9 +289,10 @@ public class Converter {
     static void printHelp() {
         System.out.format("Usage: %s [-options] fileName...\n", Converter.class.getName());
         System.out.format("where options include:\n");
-        System.out.format("\t-r | -reset\tPerform reset on files (use if they contain older version of the editor)\n");
-        System.out.format("\t-k | -keep\tKeep reset versions of files (...Reset.qdef)\n");
-        System.out.format("\t-i=<percent> | -isomorphism=<percent>\tAdd isomorphism condition to the questions with <percent> partial points for nonisomorphic answer\n");
+        System.out.format("\t-s=<suf> | --suffix=<suf>\tAdd a suffix to the new files, defaults to .new\n");
+        System.out.format("\t-r | --reset\tPerform reset on files (use if they contain older version of the editor)\n");
+        System.out.format("\t-k | --keep\tKeep reset versions of files (...Reset.qdef)\n");
+        System.out.format("\t-i=<percent> | --isomorphism=<percent>\tAdd isomorphism condition to the questions with <percent> partial points for nonisomorphic answer\n");
     }
 
     static String getBasicWrapper(String idString, String generalType) {
