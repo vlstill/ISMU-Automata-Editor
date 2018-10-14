@@ -1,5 +1,8 @@
 
-all : upload
+all : generator upload
+
+generator :
+	cd Generator && make
 
 upload : is-upload.zip
 	@echo https://is.muni.cz/auth/el/1433/podzim$(shell date +'%Y')/IB102/odp/support/v2/
@@ -34,14 +37,12 @@ UPLOADED_ARTIFACTS = editorJs.js editorCss.css utilIS.js \
                      NFAParser.js REGParser.js EFAParser.js \
                      jquery.min.js jquery-ui.js jquery-ui.css bootstrap.min.js
 
-$(info $(UPLOADED_ARTIFACTS:%=is-upload/%))
-
 is-upload/is_folder_info.xml : upload-xmlgen.sh $(UPLOADED_ARTIFACTS:%=is-upload/%)
 	bash ./$< $(UPLOADED_ARTIFACTS) > $@
 
 is-upload.zip : is-upload/is_folder_info.xml $(UPLOADED_ARTIFACTS:%=is-upload/%)
 	zip -r is-upload.zip is-upload
 
-.PHONY : all upload
+.PHONY : all upload generator
 
 # vim: noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
