@@ -2124,18 +2124,15 @@ function generateAnswer(rect)
 						")={" + transitions[keys[j]] + "} ";
 			}
 		}
-    }
-    if (finalStates.length !== 0)
-    {
-        out += "final={";
-        for (i = 0; i < finalStates.length; i++)
-    	{
-            out += finalStates[i].name;
-            if (i < finalStates.length - 1)
-                out += ",";
-        }
-        out +="}";
 	}
+	out += "final={";
+	for (i = 0; i < finalStates.length; i++)
+	{
+		out += finalStates[i].name;
+		if (i < finalStates.length - 1)
+			out += ",";
+	}
+	out +="}";
 	return out;
 }
 
