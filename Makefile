@@ -1,8 +1,11 @@
 
-all : generator upload
+all : generator resolver upload
 
 generator :
 	cd Generator && make
+
+resolver :
+	cd Resolver && make
 
 upload : is-upload.zip
 	@echo https://is.muni.cz/auth/el/1433/podzim$(shell date +'%Y')/IB102/odp/support/v2/
