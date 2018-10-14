@@ -18,3 +18,5 @@ is-upload/*.css
 _build
 
 *.new.qdef
+
+*~
